@@ -2,14 +2,11 @@
 
 这是文星 / CBP 40 方点显器的 NVDA 点显器驱动。
 
-驱动直接通过 Windows WinUSB 与设备通信，不依赖阳光读屏的 `StarLibDriver.dll`。
-
 ## 功能
 
 - 40 方盲文显示。
 - 1 到 40 方光标路由键。
 - 左右各三个功能键，映射到 NVDA 盲文导航命令。
-- 使用设备接口 GUID `{58D07210-27C1-11DD-BD0B-0800200C9A66}` 直接通信。
 
 ## 按键映射
 
@@ -26,14 +23,13 @@
 ## 要求
 
 - NVDA 2026.1.1 或更高版本。
-- 文星 / CBP 点显器已安装 WinUSB 驱动。
 
 ## 构建
 
 运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\build.ps1
+.\build.ps1
 ```
 
 生成的插件包位于 `dist\wenxingBraille-0.1.0.nvda-addon`。
