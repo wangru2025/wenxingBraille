@@ -2,6 +2,12 @@
 
 This add-on provides an NVDA braille display driver for the Wenxing / CBP 40-cell braille display.
 
+## Notice
+
+This is an unofficial compatibility add-on. It is not affiliated with, endorsed by, or supported by the Wenxing / CBP device vendor, Sunshine Screen Reader, ZDSR, or NV Access.
+
+The project implements device communication directly and does not include or distribute Sunshine Screen Reader files, `StarLibDriver.dll`, ZDSR binaries, NVDA binaries, or other proprietary components. Users must obtain any required host software and hardware through lawful channels and comply with their respective licenses.
+
 ## Features
 
 - 40-cell braille output.
