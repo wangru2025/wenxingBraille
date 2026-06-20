@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release, for example v1.0.0"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - name: Build add-on
+        shell: pwsh
+        run: ./build.ps1
+
+      - name: Read add-on metadata
+        id: metadata
+        shell: pwsh
+        run: |
+          $manifest = @{}
+          Get-Content ./addon/manifest.ini | ForEach-Object {
+            if ($_ -match '^\s*([^#;][^=]+?)\s*=\s*(.+?)\s*$') {
+              $manifest[$matches[1].Trim()] = $matches[2].Trim().Trim('"')
+            }
+          }
+          "name=$($manifest['name'])" >> $env:GITHUB_OUTPUT
+          "version=$($manifest['version'])" >> $env:GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          name: Wenxing Braille ${{ steps.metadata.outputs.version }}
+          files: |
+            dist/${{ steps.metadata.outputs.name }}-${{ steps.metadata.outputs.version }}.nvda-addon
+            dist/SHA256SUMS.txt
+          draft: false
+          prerelease: false

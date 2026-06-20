@@ -32,4 +32,4 @@
 .\build.ps1
 ```
 
-生成的插件包位于 `dist\wenxingBraille-0.1.0.nvda-addon`。
+生成的插件包位于 `dist\wenxingBraille-1.0.0.nvda-addon`。

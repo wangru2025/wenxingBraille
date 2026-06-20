@@ -32,4 +32,4 @@ Run:
 .\build.ps1
 ```
 
-The add-on package will be written to `dist\wenxingBraille-0.1.0.nvda-addon`.
+The add-on package will be written to `dist\wenxingBraille-1.0.0.nvda-addon`.
